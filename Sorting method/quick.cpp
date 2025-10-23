@@ -1,9 +1,8 @@
-#include <iostream> // Include the input/output stream library for console logging (cout, endl)
-#include <vector>   // Include the vector library to use dynamic arrays (std::vector)
-#include <utility>  // Include for std::swap (though <vector> or <iostream> might implicitly include it)
+// QUICK SORT 
 
-using namespace std; // Use the standard namespace to avoid writing std:: before common functions
-
+#include <iostream>
+#include <vector>
+using namespace std; 
 /**
  * This algo partitions the array around a pivot element.
  * * This function takes the first element (arr[low]) as the pivot.
