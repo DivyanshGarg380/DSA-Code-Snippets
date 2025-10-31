@@ -1,5 +1,8 @@
 # 🧩 DSA Code Snippets
 
+## This project is will not remain ``` Open Sourced ``` after ```01/11/205 20:00 PM``` . No external PR's will be accepted. 
+## I would Like to thank all the contributors who helped grow this Repo . Kudos
+
 Welcome to my collection of **Data Structures & Algorithms** solutions from **Striver’s A2Z DSA Sheet**.  
 I’m documenting my journey as I improve problem-solving skills — one topic at a time 🚀  
 
