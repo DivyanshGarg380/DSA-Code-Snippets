@@ -1,0 +1,113 @@
+#include <iostream>
+using namespace std;
+
+class Queue {
+private:
+    int size;
+    int *queue;
+    int front;
+    int rear;
+
+public:
+    Queue(int s) {
+        size = s;
+        queue = new int[size];
+        front = -1;
+        rear = -1;
+    }
+
+    bool isFull() {
+        return rear == size - 1;
+    }
+
+    bool isEmpty() {
+        return front == -1 || front > rear;
+    }
+
+    void enqueue(int value) {
+        if (isFull()) {
+            cout << "Queue is full!" << endl;
+            return;
+        }
+        if (front == -1) {
+            front = 0;
+        }
+        queue[++rear] = value;
+        cout << "Enqueued: " <<value << endl;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+        cout << "Dequeued: " << queue[front++] << endl;
+    }
+
+    int count() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            return rear - front + 1;
+        }
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return -1;
+        }
+        return queue[front];
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+        cout << "Queue elements: ";
+        for (int i = front; i <= rear; i++) {
+            cout << queue[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    int s;
+    cout<<"enter size:";
+    cin>> s;
+    Queue q(s);
+   
+    int choice, value;
+    do {
+        cout << "\nQueue Operations:\n";
+        cout << "1. Enqueue\n2. Dequeue\n3. Peek\n4. Count\n5. Display\n6. Exit\nEnter your choice: ";
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                cout << "Enter value to enqueue: ";
+                cin >> value;
+                q.enqueue(value);
+                break;
+            case 2:
+                q.dequeue();
+                break;
+            case 3:
+                cout << "Front element: " << q.peek() << endl;
+                break;
+            case 4:
+                cout << "Queue count: " << q.count() << endl;
+                break;
+            case 5:
+                q.display();
+                break;
+            case 6:
+                cout << "Exiting program." << endl;
+                break;
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+    } while (choice != 6);
+    return 0;
+}
