@@ -11,13 +11,14 @@ Author :
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
-struct node {
+struct Node {
     int data;
-    struct node *left, *right;
+    struct Node *left, *right;
 };
-struct node* createNode(int value) {
-    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
     newNode->left = newNode->right = NULL;
     return newNode;
@@ -50,7 +51,7 @@ struct Node* insertLevelOrder(struct Node* root, int val){
             temp->right = newNode;
             return root;
         }else{
-            enqueue(root->right);
+            enqueue(temp->right);
         }
     }
     return root;
@@ -68,8 +69,8 @@ struct Node* insertAtSpecificPos(struct Node* root , int val, int level, int pos
         }
         return root;
     }
-    root->left = insertAtPos(root->left, val, level - 1, pos);
-    root->right = insertAtPos(root->right, val, level - 1, pos);
+    root->left = insertAtSpecificPos(root->left, val, level - 1, pos);
+    root->right = insertAtSpecificPos(root->right, val, level - 1, pos);
     return root;
 }
 void printLevel(Struct Node* root , int lvl){
@@ -180,8 +181,8 @@ void levelOrderDisplay(struct Node* root){
     struct Node* queue[100];
     int front = 0, rear = 0;
     queue[rear++] = root;
-    while(!isEmpty()){
-        struct Node* temp = dequeue();
+    while(front < rear){
+        struct Node* temp = queue[front++];
         printf("%d ", temp->data);
         if(temp->left) queue[rear++] = temp->left;
         if(temp->right) queue[rear++] temp->right;
@@ -215,10 +216,11 @@ int printAncestors(struct Node* root , int target){
 }
 // Sub Variation -> Lowest Common Ancestor -> Find the first root where the path diverges ( left and right) between nodes p and q 
 struct Node* lowestCommonAncestor(struct Node* root, struct Node* p, struct Node* q ){
-    if(root == NULL) return NULL;
-    int curr = root->val;
-    if(curr < p->val && curr > q->val) return lowestCommonAncestor(root->right,p,q);
-    if(curr > p->val && curr < q->val) return lowestCommonAncestor(root->left,p,q);
+   if(root == NULL) return NULL;
+    if(root->data > p->data && root->data > q->data)
+        return lowestCommonAncestor(root->left, p, q);
+    if(root->data < p->data && root->data < q->data)
+        return lowestCommonAncestor(root->right, p, q);
     return root;
 }
 // Sum of All Nodes/Leaf Nodes
@@ -240,8 +242,8 @@ int sumAtLevel(struct Node* root, int level){
 // Count Nodes Greater than X 
 int countGreater(struct Node* root, int x){
     if(root == NULL) return 0;
-    int count = root-data > x ? 1:0;
-    return countGreater(root->left,x) + countGreater(root->right,x);
+    int count = root->data > x ? 1:0;
+    return count + countGreater(root->left,x) + countGreater(root->right,x);
 }
 // Path Sum - LC Path Sum 1 
 int hasPathSum(struct Node* root,int sum){
@@ -250,7 +252,7 @@ int hasPathSum(struct Node* root,int sum){
     return hasPathSum(root->left , sum - root->data) || hasPathSum(root->right, sum- root->data);
 }
 // LC : Path Sum 2 
-int pathSum2(struct Node* root, int sum){ // Find all root-leaf paths where the sum == Target
+void pathSum2(struct Node* root, int sum){ // Find all root-leaf paths where the sum == Target
     int path[100]; // this is why I hate C
     pathSum2Finder(root,sum,path,0);
 }
@@ -283,7 +285,7 @@ void leftView(struct Node* root){
          struct Node* temp = queue[front++];
          if(i==0) printf("%d ",temp->data);
          if(temp->left) queue[rear++] =  temp->left;
-         if(temp->right) queue[rear++] = temp->right
+         if(temp->right) queue[rear++] = temp->right;
         }
     }
 }
