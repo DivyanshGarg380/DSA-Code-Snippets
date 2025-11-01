@@ -90,13 +90,62 @@ int height(Struct Node* root){
 }
 
 // Traversals
-void inorder(struct node* root) {
+void inorder(struct Node* root) {
     if (root != NULL) {
         inorder(root->left);
         printf("%d ", root->data);
         inorder(root->right);
     }
 }
+void inorderIterative(struct Node* root){
+    struct Node* stack[100];
+    int top = -1;
+    struct Node* curr = root;
+    while (curr != NULL || top != -1) {
+        while (curr != NULL) {
+            stack[++top] = curr;
+            curr = curr->left;
+        }
+        curr = stack[top--];
+        printf("%d ", curr->data);
+        curr = curr->right;
+    }
+}
+void preorderIterative(struct Node* root) {
+    if (root == NULL) return;
+    struct Node* stack[100];
+    int top = -1;
+    stack[++top] = root;
+    while (top != -1) {
+        struct Node* curr = stack[top--];
+        printf("%d ", curr->data);
+
+        if (curr->right)
+            stack[++top] = curr->right;
+        if (curr->left)
+            stack[++top] = curr->left;
+    }
+}
+void postorderIterative(struct Node* root) {
+    if (root == NULL) return;
+    struct Node* stack1[100];
+    struct Node* stack2[100];
+    int top1 = -1, top2 = -1;
+    stack1[++top1] = root;
+    while (top1 != -1) {
+        struct Node* curr = stack1[top1--];
+        stack2[++top2] = curr;
+
+        if (curr->left)
+            stack1[++top1] = curr->left;
+        if (curr->right)
+            stack1[++top1] = curr->right;
+    }
+    while (top2 != -1) {
+        printf("%d ", stack2[top2--]->data);
+    }
+}
+
 // function to Mirror/Reverse the Tree
 void mirror(struct Node* root){
     if(root == NULL) return;
