@@ -1,4 +1,14 @@
 /*
+Author :
+
+███████╗████████╗ █████╗ ██████╗  ███╗   ███╗ █████╗ ███╗   ██╗
+██╔════╝╚══██╔══╝██╔══██╗██╔══██╗ ████╗ ████║██╔══██╗████╗  ██║
+███████╗   ██║   ███████║██████╔╝ ██╔████╔██║███████║██╔██╗ ██║
+╚════██║   ██║   ██╔══██║██║  ██║ ██║╚██╔╝██║██╔══██║██║╚██╗██║
+███████║   ██║   ██║  ██║██║  ██║ ██║ ╚═╝ ██║██║  ██║██║ ╚████║
+╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝  STARMAN248
+*/
+/*
 Binary Tree
 1.⁠ ⁠Iterative create bt
 2.⁠ ⁠Display bt in tree form
@@ -78,12 +88,9 @@ void iterativePreorder(struct Node* root){
 }
 struct Node* deleteNode(struct Node* root, int key) {
     if (!root) return NULL;
-
-    if (key < root->data)
-        root->left = deleteNode(root->left, key);
-    else if (key > root->data)
-        root->right = deleteNode(root->right, key);
-    else{
+    root->left = deleteNode(root->left,key);
+    root->right = deleteNode(root->right,key);
+    if(root->data == key){
         int degree = 0;
         if(root->left) degree++;
         if(root->right) degree++;
