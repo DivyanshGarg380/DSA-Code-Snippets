@@ -12,87 +12,66 @@ Author :
 #include <stdio.h>
 #include <stdlib.h>
 struct Node{
-  int key;
-  struct Node* left;
-  struct Node* right;
-  int height;
+    int key;
+    struct Node* left, *right;
+    int height;
 };
 int height(struct Node* n){
     if(n == NULL) return 0;
     return n->height;
 }
-int max(int a , int b){
-    return (a>b)?a:b;
+int max(int a, int b){
+    return a > b ? a : b;
 }
-struct Node* newNode(int key){
-    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
-    node->key = key;
-    node->left = node->right = NULL;
-    node->height = 1;
-    return node;
+struct Node* createNode(int key){
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->key = key;
+    newNode->left = newNode->right = NULL;
+    newNode->height = 1;
+    return newNode;
 }
 struct Node* LL(struct Node* y){
     struct Node* x = y->left;
     struct Node* t2 = x->right;
-    
     x->right = y;
     y->left = t2;
-    
-    y->height = max(height(y->left),height(y->right)) + 1;
-    x->height = max(height(x->left),height(x->right)) + 1;
+    y->height = max(height(y->left),height(y->right))+1;
+    x->height = max(height(x->left),height(x->right))+1;
     return x;
 }
 struct Node* RR(struct Node* x){
     struct Node* y = x->right;
     struct Node* t2 = y->left;
-    
     y->left = x;
     x->right = t2;
-    
-    x->height = max(height(x->left),height(x->right)) + 1;
-    y->height = max(height(y->left),height(y->right)) + 1;
+    x->height = max(height(x->left),height(x->right))+1;
+    y->height = max(height(y->left),height(y->right))+1;
     return y;
 }
 int balance(struct Node* n){
-    if(n == NULL) return 0;
-    return height(n->left) - height(n->right);
+    if(n==0) return 0;
+    return height(n->left)-height(n->right);
 }
-struct Node* insert(struct Node* node , int key){
-    if(node == NULL) return newNode(key);
-    if(key < node->key) node->left = insert(node->left,key);
+struct Node* insert(struct Node* node, int key){
+    if(node == NULL) return createNode(key);
+    if(key < node->key) node->left = insert(node->left, key);
     else if(key > node->key) node->right = insert(node->right,key);
     else return node;
-    
     node->height = 1 + max(height(node->left),height(node->right));
     int balanceFac = balance(node);
-    // ab check karte hai cases 
-    // case : 1 -> LL
-    if(balanceFac > 1 && key < node->left->key) 
-        return LL(node);
-    // case : 2 -> RR
-    if(balanceFac < -1 && key > node->right->key)
-        return RR(node);
-    // case : 3 -> LR
+    if(balanceFac > 1 && key < node->left->key) return LL(node);
+    if(balanceFac < -1 && key > node->right->key) return RR(node);
     if(balanceFac > 1 && key > node->left->key){
         node->left = RR(node->left);
         return LL(node);
     }
-    // case : 4 -> RL
     if(balanceFac < -1 && key < node->right->key){
         node->right = LL(node->right);
         return RR(node);
     }
     return node;
 }
-
-void inorder(struct Node* root){
-    if(root != NULL){
-        inorder(root->left);
-        printf(" %d ",root->key);
-        inorder(root->right);
-    }
-}
-struct Node* minValNode(struct Node* node){
+struct Node* minVal(struct Node* node){
     while(node->left != NULL){
         node = node->left;
     }
@@ -100,45 +79,83 @@ struct Node* minValNode(struct Node* node){
 }
 struct Node* deleteNode(struct Node* root, int key){
     if(root == NULL) return root;
-    if(key < root->key) root->left = deleteNode(root->left,key);
+    if(key < root->key) root->left = deleteNode(root->left, key);
     else if(key > root->key) root->right = deleteNode(root->right,key);
-    else{
-        // reached the node to be deleted
-        // case 1: no child or 1 child 
-        if(root->left == NULL || root->right == NULL){
-            struct Node* temp = root->left ? root->left: root->right;
-            if(temp == NULL){ // No child
-                temp = root;
-                root = NULL;
-            }else{ // 1 child
-                *root = *temp;
-            }
-            free(temp);
+    else{ // destination reached
+        if(root->left == NULL){
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        }else if(root->right == NULL){
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
         }else{
-            // 2 children
-            struct Node* temp = minValNode(root->right);
+            struct Node* temp = minVal(root->right);
             root->key = temp->key;
             root->right = deleteNode(root->right,temp->key);
         }
     }
     if(root == NULL) return root;
-    root->height = 1 + max(height(root->left),height(root->right));
+    root->height = 1 + max(height(root->left), height(root->right));
     int balanceFac = balance(root);
-    if(balanceFac > 1 && balance(root->left) >= 0) return LL(root);
-    if(balanceFac < -1 && balance(root->right) <= 0) return RR(root);
-    if(balanceFac > 1 && balance(root->left) < 0){
+    if(balanceFac > 1 && key < root->left->key) return LL(root);
+    if(balanceFac < -1 && key > root->right->key) return RR(root);
+    if(balanceFac > 1 && key > root->left->key){
         root->left = RR(root->left);
         return LL(root);
     }
-    if(balanceFac < -1 && balance(root->right) > 0){
-        root->right = LL(root->left);
+    if(balanceFac < -1 && key < root->right->key){
+        root->right = LL(root->right);
         return RR(root);
     }
     return root;
 }
+void inorder(struct Node* root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf(" %d ", root->key);
+        inorder(root->right);
+    }
+}
 int main(){
     // Insert your example inputs here to test this program
-    printf("Author: Divyansh Garg , Starman248");
+    struct Node* root = NULL;
+    int choice, key;
+
+    printf("Author: Divyansh Garg , STARMAN248\n");
+    printf("AVL Tree Operations (Menu Driven)\n");
+
+    while (1) {
+        printf("\n1. Insert\n2. Delete\n3. Display (Inorder)\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter key to insert: ");
+                scanf("%d", &key);
+                root = insert(root, key);
+                printf("Inserted %d successfully.\n", key);
+                break;
+            case 2:
+                printf("Enter key to delete: ");
+                scanf("%d", &key);
+                root = deleteNode(root, key);
+                printf("Deleted %d successfully (if existed).\n", key);
+                break;
+            case 3:
+                printf("Inorder Traversal: ");
+                inorder(root);
+                printf("\n");
+                break;
+            case 4:
+                printf("Exiting program...\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Try again.\n");
+        }
+    }
     return 0;
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
