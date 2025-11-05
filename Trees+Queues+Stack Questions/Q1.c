@@ -29,7 +29,7 @@ struct Node* createNode(int data){
 void append(struct Node** head, int data){
     struct Node* newNode = createNode(data);
     if(*head == NULL){
-        head = newNode;
+        *head = newNode;
         return;
     }
     struct Node* temp = *head;
@@ -64,7 +64,7 @@ void sortDLL(struct Node* head){
     struct Node* i, *j;
     for(i = head; i->next != NULL; i = i->next){
         for(j=i->next; j!=NULL; j = j->next){
-            if(i->data = j->data){
+            if(i->data > j->data){
                 int temp = i->data;
                 i->data = j->data;
                 j->data = temp;
@@ -76,10 +76,10 @@ void seperateEvenOdd(struct Node* head, struct Node** even, struct Node** odd){
     if(!head) return;
     struct Node* temp = head;
     while(temp){
-        if(temp->data % 2 == 0) appendNode(even,temp->data);
-        else appendNode(odd,temp->data);
+        if(temp->data % 2 == 0) append(even,temp->data);
+        else append(odd,temp->data);
+        temp = temp->next;
     }
-    temp = temp->next;
 }
 int main() {
     // Write C code here
