@@ -9,72 +9,68 @@ class stk{
    
    public:
     stk(){
-     top= -1;
+       top= -1;
      }
      void push(int k){
         if (isFull()) {
-         cout<<"Error! Stack overflow!"<<endl;
-         return;
+            cout<<"Error! Stack overflow!"<<endl;
+            return;
          }
          else{
-         cout<<"stack is not full"<<endl;
+            cout<<"stack is not full"<<endl;
          }
          arr[++top]=k;
          cout<<"value pushed into stack ="<<k<<endl;
-         
-        }
-        int pop(){
-          if(isEmpty()){
+     }
+     int pop(){
+       if(isEmpty()){
            cout<<"Error! Stack underflow!<<endl";
            return -1;
-           }
-           else{
+        }
+        else{
            cout<<"stack is not empty"<<endl;
-           } 
-           cout << "Popped value: " << arr[top] << endl;
-            return arr[top--];
-            }
-        int peek(){
+        } 
+        cout << "Popped value: " << arr[top] << endl;
+        return arr[top--];
+      }
+      int peek(){
         if(isEmpty()){
            cout<<"Error! Stack underflow!"<<endl;
            return -1;
-           }
+        }
            cout << "Top element is: " << arr[top] << endl;
            return arr[top];
-           }
+      }       
+     bool isEmpty(){
+        return top==-1;
+     }
+      bool isFull(){
+        return top== n-1;
+     }
            
-           
-        bool isEmpty(){
-           return top==-1;
-           }
-         bool isFull(){
-           return top== n-1;
-           }
-           
-         int Display(){
+      int Display(){
          if(isEmpty()){
            cout<<"Error! Stack underflow!"<<endl;
            return -1;
-           }
+         }
           cout<<"Display all elements from tp to bottom"<<endl;
-          for( i=top;i>=0;i--)
-          {
-            cout<<arr[i]<<endl;
-           }
-        }
+          for( i=top;i>=0;i--){
+             cout<<arr[i]<<endl;
+          }
+     }
 
-        void search(int key) {
-        if (isEmpty()) {
-            cout << "Error! Stack is empty!" << endl;
-            return;
-        }
-        for (int i = top; i >= 0; i--) {
-            if (arr[i] == key) {
-                cout << "Value " << key << " found at position " << (top - i + 1) << " from the top." << endl;
-                return;
-            }
-        }
-        cout << "Value " << key << " not found in stack." << endl;
+     void search(int key) {
+     if (isEmpty()) {
+         cout << "Error! Stack is empty!" << endl;
+         return;
+     }
+     for (int i = top; i >= 0; i--) {
+         if (arr[i] == key) {
+             cout << "Value " << key << " found at position " << (top - i + 1) << " from the top." << endl;
+             return;
+         }
+     }
+     cout << "Value " << key << " not found in stack." << endl;
     }
 };
         
