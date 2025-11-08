@@ -49,7 +49,7 @@ struct Node* RR(struct Node* x){
     return y;
 }
 int balance(struct Node* n){
-    if(n==0) return 0;
+    if(n==NULL) return 0;
     return height(n->left)-height(n->right);
 }
 struct Node* insert(struct Node* node, int key){
