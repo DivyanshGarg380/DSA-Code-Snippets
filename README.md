@@ -6,8 +6,17 @@
 Welcome to my collection of **Data Structures & Algorithms** solutions from **Striver’s A2Z DSA Sheet**.  
 I’m documenting my journey as I improve problem-solving skills — one topic at a time 🚀  
 
-![Language](https://img.shields.io/badge/Language-C++-blue)
-![Goal](https://img.shields.io/badge/Goal-Master%20DSA-orange)
+<p align="left">
+  <img src="https://img.shields.io/badge/Language-C++-blue" />
+  <img src="https://img.shields.io/badge/LeetCode-Knight-yellow" />
+  <img src="https://img.shields.io/badge/CodeChef-5★-brown" />
+  <img src="https://img.shields.io/badge/Codeforces-Expert-lightblue" />
+  <span style="background-color:white; padding:2px 6px; border-radius:6px; display:inline-flex; align-items:center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" width="60" style="vertical-align:middle; margin-right:4px; border-radius:4px; padding:2px;"/>
+  </span>
+  <img src="https://img.shields.io/badge/Amazon%20SDE-orange" />
+</p>
+
 
 ---
 
