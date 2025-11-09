@@ -1,4 +1,4 @@
-# 🧩 DSA Code Snippets
+# 🧩 DSA Code Snippets 
 
 ## This project is will not remain ``` Open Sourced ``` after ```01/11/2025 00:00 AM```
 ## I would Like to thank all the contributors who helped grow this Repo . Kudos
@@ -70,5 +70,5 @@ This is primarily a personal learning repo, but suggestions or improvements are 
 Feel free to open a **pull request** or share your thoughts in the **Issues** tab.
 
 
-> “Consistency beats intensity.  
+### ⭐ **If everything seems under control, you’re not flying fast enough** ⭐
 > Keep coding, keep improving ”
