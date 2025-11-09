@@ -7,7 +7,6 @@ Welcome to my collection of **Data Structures & Algorithms** solutions from **St
 I’m documenting my journey as I improve problem-solving skills — one topic at a time 🚀  
 
 ![Language](https://img.shields.io/badge/Language-C++-blue)
-![Status](https://img.shields.io/badge/Updated-Daily-brightgreen)
 ![Goal](https://img.shields.io/badge/Goal-Master%20DSA-orange)
 
 ---
