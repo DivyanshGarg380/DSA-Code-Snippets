@@ -1,8 +1,5 @@
 # 🧩 DSA Code Snippets 
 
-## This project is will not remain ``` Open Sourced ``` after ```01/11/2025 00:00 AM```
-## I would Like to thank all the contributors who helped grow this Repo . Kudos
-
 Welcome to my collection of **Data Structures & Algorithms** solutions from **Striver’s A2Z DSA Sheet**.  
 I’m documenting my journey as I improve problem-solving skills — one topic at a time 🚀  
 
@@ -72,3 +69,5 @@ Feel free to open a **pull request** or share your thoughts in the **Issues** ta
 
 ### ⭐ **If everything seems under control, you’re not flying fast enough** ⭐
 > Keep coding, keep improving ”
+
+### No Longer Associated with Hactoberfest'25. Contribution are still Welcomed 🫡
