@@ -23,3 +23,4 @@ public:
         return ans;
     }
 };
+// TC: O(n) , SC: o(1)
