@@ -13,7 +13,7 @@ Author :
 #include <stdlib.h>
 int adj[10][10]; // assuming max 10 nodes.
 int n;
-// Initializing the Adjacency Matrix
+// Initializing the Adjacency Matrix :o
 void intiGraph(){
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
@@ -304,4 +304,5 @@ int main(){
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
 // I track record my submissions, any usage of my solutions during contest can lead to dropping of your ratings. Beware 😈
+
 
