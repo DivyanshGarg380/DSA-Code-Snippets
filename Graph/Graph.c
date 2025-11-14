@@ -303,4 +303,5 @@ int main(){
     return 0;
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
+// I track record my submissions, any usage of my solutions during contest can lead to dropping of your ratings. Beware 😈
 
