@@ -1,7 +1,7 @@
 /*
 Problem link:- https://codeforces.com/contest/2093/problem/B
 */
-
+// This code is contributed and not written by the repo owner
 #include <bits/stdc++.h>
 // #ifdef LOCAL
 // #define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
