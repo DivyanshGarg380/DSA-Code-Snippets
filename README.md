@@ -51,6 +51,10 @@ DSA-Code-Snippets/
 ├── 06_LinkedList/
 ├── 07_Trees/
 ├── 08_Graphs/
+├── 09_LeetCode_POTD/
+├── 10_CodeChef/
+├── 11_CodeForces/
+├── 12_IMP_Patterns/
 └── README.md
 
 ```
