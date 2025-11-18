@@ -29,7 +29,7 @@ void addEdge(int u,int v,int directed) {
     if(!directed) adj[v][u]=1; // undirected
 }
 // Displaying the Adjaceny Matrix
-void displayGraph(){
+void displayAdjMatrix(){
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
             printf("%d ", adj[i][j]);
@@ -46,7 +46,7 @@ struct Node{
 struct Node* adjList[10]; // Adjancency List
 
 // Adding Edges in the List
-void addEdgeList(int u,int v,int directed){
+void addEdgeToAdjList(int u,int v,int directed){
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->vertex = v;
     newNode->next = adjList[u];
@@ -329,6 +329,7 @@ int main(){
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
 // I track record my submissions, any usage of my solutions during contest can lead to dropping of your ratings. Beware 😈
+
 
 
 
