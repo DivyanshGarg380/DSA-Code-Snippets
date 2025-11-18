@@ -91,6 +91,28 @@ void BFS(int start){
     // TC: O(n^2) , SC: O(n)
    // Can be optimized with Adjacency List
 }
+
+//DFS Iterative
+void DFS_Iter(int start){
+    int stack[10];
+    int top = -1;
+    int visited[10] = {0};
+    stack[++top] = start;
+    visited[start] = 1;
+
+    while(top != -1){
+        int u = stack[top--];
+        printf("%d ", u);
+
+        for(int v = 0; v < n; v++){
+            if(adj[u][v] && !visited[v]){
+                stack[++top] = v;
+                visited[v] = 1;
+            }
+        }
+    }
+}
+
 // DFS using Adjacency Matrix
 void DFS(int start){
     int visited[10] = {0};
