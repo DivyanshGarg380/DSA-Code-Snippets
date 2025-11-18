@@ -93,17 +93,15 @@ void BFS(int start){
 }
 
 //DFS Iterative
-void DFS_Iter(int start){
+void DFSIterative(int start){
     int stack[10];
     int top = -1;
     int visited[10] = {0};
     stack[++top] = start;
     visited[start] = 1;
-
-    while(top != -1){
+    while(top!= -1){
         int u = stack[top--];
         printf("%d ", u);
-
         for(int v = 0; v < n; v++){
             if(adj[u][v] && !visited[v]){
                 stack[++top] = v;
@@ -331,5 +329,6 @@ int main(){
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
 // I track record my submissions, any usage of my solutions during contest can lead to dropping of your ratings. Beware 😈
+
 
 
