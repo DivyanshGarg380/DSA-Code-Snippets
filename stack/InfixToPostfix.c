@@ -43,10 +43,14 @@ int main() {
         }
 
         else {
-            while (top != -1 && precedence(stack[top]) >= precedence(c))
+            while (top != -1 && 
+                  ((c != '^' && precedence(stack[top]) >= precedence(c)) ||
+                   (c == '^' && precedence(stack[top]) > precedence(c)))){
                 printf("%c", pop());
+            }
             push(c);
         }
+
     }
 
     while (top != -1)
