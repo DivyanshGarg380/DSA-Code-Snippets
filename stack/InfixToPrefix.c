@@ -40,7 +40,7 @@ void swapBrackets(char *exp) {
 }
 
 int main() {
-    char infix[MAX], postfix[MAX];
+    char infix[MAX], prefix[MAX];
     printf("Enter Infix: ");
     scanf("%s", infix);
 
@@ -53,33 +53,38 @@ int main() {
     for (int i = 0; infix[i] != '\0'; i++) {
         char c = infix[i];
 
-        if (isalnum(c))
-            postfix[k++] = c;
+        if (isalnum(c)) {
+            prefix[k++] = c;
+        }
 
-        else if (c == '(')
+        else if (c == '(') {
             push(c);
+        }
 
         else if (c == ')') {
             char x;
             while ((x = pop()) != '(')
-                postfix[k++] = x;
+                prefix[k++] = x;
         }
 
-        else {
-            while (top != -1 && precedence(stack[top]) > precedence(c))
-                postfix[k++] = pop();
+        else { 
+            while (top != -1 &&
+                  ((c != '^' && precedence(stack[top]) >= precedence(c)) ||
+                   (c == '^' && precedence(stack[top]) > precedence(c))))
+                prefix[k++] = pop();
+
             push(c);
         }
     }
 
     while (top != -1)
-        postfix[k++] = pop();
+        prefix[k++] = pop();
 
-    postfix[k] = '\0';
+    prefix[k] = '\0';
 
-    reverse(postfix);
+    reverse(prefix);
 
-    printf("Prefix: %s", postfix);
+    printf("Prefix: %s", prefix);
 
     return 0;
 }
