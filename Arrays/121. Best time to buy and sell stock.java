@@ -11,9 +11,7 @@ class Solution {
 
                 max = Math.max(profit,max);
             }
-            else
-            l=r;
-
+            else l=r;
             r++;
         }
         return max;
