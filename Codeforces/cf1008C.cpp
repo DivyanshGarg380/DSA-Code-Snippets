@@ -29,7 +29,7 @@ void solve()
     ll sum = 0;
     vll a;
     for (ll i = 1; i < n; i++)
-    {
+    { 
         a.pb(b[i]);
         a.pb(b[n + i - 1]);
         sum += b[n + i - 1] - b[i];
