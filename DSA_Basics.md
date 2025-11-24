@@ -1,6 +1,6 @@
 # 🧱 Data Structures — Complete Overview
 
-> This document summarizes all major data structures, their purpose, common operations, and time complexities.
+> This document summarizes all major data structures, their purpose, common operations, and time complexities :)
 
 ---
 
