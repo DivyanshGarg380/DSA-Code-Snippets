@@ -6,7 +6,7 @@ I’m documenting my journey as I improve problem-solving skills — one topic a
 <p align="left">
   <img src="https://img.shields.io/badge/Language-C++-blue" />
   <br/>
-  <img src="https://img.shields.io/badge/Goal:-Green" />
+  <img src="https://img.shields.io/badge/Goal: -Green" />
   <img src="https://img.shields.io/badge/LeetCode-Knight-yellow" />
   <img src="https://img.shields.io/badge/CodeChef-5★-brown" />
   <img src="https://img.shields.io/badge/Codeforces-Expert-lightblue" />
