@@ -120,42 +120,7 @@ void inorder(struct Node* root) {
 }
 int main(){
     // Insert your example inputs here to test this program
-    struct Node* root = NULL;
-    int choice, key;
-
-    printf("Author: Divyansh Garg , STARMAN248\n");
-    printf("AVL Tree Operations (Menu Driven)\n");
-
-    while (1) {
-        printf("\n1. Insert\n2. Delete\n3. Display (Inorder)\n4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                printf("Enter key to insert: ");
-                scanf("%d", &key);
-                root = insert(root, key);
-                printf("Inserted %d successfully.\n", key);
-                break;
-            case 2:
-                printf("Enter key to delete: ");
-                scanf("%d", &key);
-                root = deleteNode(root, key);
-                printf("Deleted %d successfully (if existed).\n", key);
-                break;
-            case 3:
-                printf("Inorder Traversal: ");
-                inorder(root);
-                printf("\n");
-                break;
-            case 4:
-                printf("Exiting program...\n");
-                exit(0);
-            default:
-                printf("Invalid choice. Try again.\n");
-        }
-    }
+    printf("Author: Divyansh Garg , Starman248");
     return 0;
 }
 // Code shared for reference only. Unauthorized use or submission under my Username - Starman248 is prohibited.
