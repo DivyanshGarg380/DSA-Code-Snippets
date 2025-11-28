@@ -15,7 +15,6 @@ I’m documenting my journey as I improve problem-solving skills — one topic a
   </span>
   <img src="https://img.shields.io/badge/Amazon%20SDE-orange" />
 </p>
-
 ---
 
 ### What’s Inside
