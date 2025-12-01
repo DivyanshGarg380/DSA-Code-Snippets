@@ -9,7 +9,7 @@ Problem link:- https://codeforces.com/contest/2093/problem/B
 // #define dbg(...)
 // #endif
 #define ll long long
-#define vll vector<ll>
+#define vll vector<ll>   
 #define vvll vector<vll>
 #define wh(t) while (t--)
 #define fi(n) for (ll i = 0; i < n; i++)
