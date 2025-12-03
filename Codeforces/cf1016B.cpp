@@ -10,7 +10,7 @@ Problem link:- https://codeforces.com/contest/2093/problem/B
 // #endif
 #define ll long long
 #define vll vector<ll>
-#define vi vector<int>
+#define vi vector<int>  
 using namespace std;
 
 void solve()
