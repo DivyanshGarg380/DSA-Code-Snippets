@@ -27,9 +27,9 @@ vector<int> findSubstring(string s, vector<string>& words) {
                 }
                 if(count == k) res.push_back(left);
             }else{
-                    window.clear();
-                    count = 0;
-                    left = right + wordLen;
+                window.clear();
+                count = 0;
+                left = right + wordLen;
             }
         }
     } 
