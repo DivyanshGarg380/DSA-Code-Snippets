@@ -38,3 +38,19 @@ vector<int> findSubstring(string s, vector<string>& words) {
 
 // TC: O(N)
 // SC: O(K)
+
+// Intuition
+/*
+    1) Store required word counts in Freq Map
+    2) Start loop 1 from 0 to wordLen
+    3) Initialize sliding window variables -> left, window map
+    4) Move right pointer in jumps of wordLen !!
+    5) Extract the current word -> string word = s.substr(right, wordLen)
+      - Case1: Word is Required
+         - window[word]++; and count++;
+      - Too many same words ?
+         - move left pointer and decrease count
+      - Word NOT required
+         - reset everything
+    6) if valid window found, push left pointer in the result
+*/
