@@ -47,10 +47,10 @@ vector<int> findSubstring(string s, vector<string>& words) {
     4) Move right pointer in jumps of wordLen !!
     5) Extract the current word -> string word = s.substr(right, wordLen)
       - Case1: Word is Required
-         - window[word]++; and count++;
+        - window[word]++; and count++;
       - Too many same words ?
-         - move left pointer and decrease count
+        - move left pointer and decrease count
       - Word NOT required
-         - reset everything
+        - reset everything
     6) if valid window found, push left pointer in the result
 */
