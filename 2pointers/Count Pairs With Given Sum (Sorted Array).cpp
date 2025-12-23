@@ -6,7 +6,7 @@ using namespace std;
 int pairsWithSum(vector<int>&arr, int target){
 	set<vector<int>>st;
 	int l = 0, r = arr.size()-1;
-	while(l<r){
+	while(l<r){    
 		int sum = arr[l] + arr[r];
 		if(sum == target){ st.insert({arr[l],arr[r]});
 			l++;
