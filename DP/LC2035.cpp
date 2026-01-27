@@ -18,7 +18,8 @@ public:
             dp[i][0] = true;
         }
 
-        if(nums[0] <= totalSum) dp[0][nums[0]] = true;
+        if(nums[0] <= totalSum) dp[0][nums[0]] = true; // RTE here 
+
         for(int i = 1; i < n; i++){
             for(int target = 1; target <= totalSum; target++){
                 bool notTaken = dp[i-1][target];
