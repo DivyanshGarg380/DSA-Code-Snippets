@@ -1,0 +1,388 @@
+/* DP Leetcode Practice */
+
+----------- Phase-0-------------
+
+-> Climbing Stairs
+
+class Solution {
+public: 
+	int solve(int n, vector<int>& dp) {
+		if(n <= 1) return 1;
+		if(dp[n] != -1) return dp[n];
+		return dp[n] = solve(n-1, dp) + solve(n-2, dp);
+	}
+	
+	int climbStairs(int n) {
+		vector<int> dp(n+1, -1);
+		return solve(n, dp);
+	}
+};
+
+TC: O(n)
+SC: O(n) -> Memo + O(n) -> Stack
+
+Optimization by removing recursion approach
+int climbStairs(int n) {
+	if(n <= 1) return 1;
+	int prev2 = 1;
+	int prev1 = 1;
+	for(int i = 2; i <= n; ++i) {
+		int curr = prev2 + prev1;
+		prev2 = prev1;
+		prev1 = curr;
+	}
+	return prev1;
+}
+
+TC: O(n)
+SC: O(1)
+
+
+
+-> House Robber I
+class Solution {
+public:
+	int solve(int i, vector<int>& nums, vector<int>& dp) {
+		if(i == 0) return nums[0];
+		if(i < 0) return 0;
+		if(dp[i] != -1) return dp[i];
+		int take = nums[i] + solve(n-2, nums, dp);
+		int notTake = solve(i-1, nums, dp);
+		return dp[i] = max(take, notTake);
+	}
+
+	int rob(vector<int>& nums) {
+		int n = nums.size();
+		vector<int> dp(n, -1);
+		return solve(n-1, nums, dp);
+	}
+};
+
+TC: O(n)
+SC: O(n) + O(n)
+
+Optimization by removing Recursion
+int rob(vector<int>& nums) {
+	int n = nums.size();
+	if(n == 1) return nums[0];
+	int prev2 = nums[0];
+	int prev1 = max(nums[0], nums[1]);
+	for(int i = 2; i < n; ++i) {
+		int take = nums[i] + prev2;
+		int notTake = prev1;
+		int curr = max(take, notTake);
+		prev2 = prev1;
+		prev1 = curr;
+	}
+	return prev1;
+}
+
+TC: O(n)
+SC: O(1)
+
+-> Frog Jumps
+Class Solution {
+Public: 
+	int solve(int i, vector<int>& heights, vector<int>& dp) {
+		if(i == 0) return 0;
+		if(dp[i] != -1) return dp[i];
+		int jOne = solve(n-1, hieghts, dp) + abs(heights[i] - heights[i-1]);
+		int jTwo = INT_MAX;
+		if(i > 1) {
+			jTwo = solve(i-2, height, dp) + abs(heights[i] - heights[i-2]);
+		}
+		return dp[i] = min(jOne, jTwo);
+	}
+
+	int frogJump(int n, vector<int>& heights) {
+		vector<int> dp(n, -1);
+		return solve(n - 1, height, dp);
+	}
+};	
+
+TC: O(n)
+SC: O(n) + O(n)
+
+Optimization by removing Recursion 
+int frogJump(vector<int>& heights) {
+	int prev2 = 0, prev1 = 0;
+	for(int i = 1; i < n; ++i) {
+		int jOne = prev1 + abs(heights[i] - heights[i-1]);
+		int jTwo = INT_MAX;
+		if(i > 1) jTwo = prev2 + abs(heights[i] - heights[i-2]);
+		int curr = min(jOne, jTwo);
+		prev2 = prev1;
+		prev1 = curr;
+	}
+	return prev1;
+}
+
+TC: O(n)
+SC: O(1)
+
+
+----------- Phase-1 (Linear)-------------
+
+-> Maximum Sum of Non Adjacent Elements
+
+class Solution {
+public: 
+	int maxNonAdjSum(vector<int>& nums) {
+		int n = nums.size();
+		if(n == 1) return nums[0];
+		vector<int> dp(n);
+		dp[0] = nums[0];
+		for(int i = 1; i < n; ++i) {
+			int take = nums[i];
+			if(i > 1) take = dp[i-2] + nums[i];
+			int notTake = dp[i-1];
+			dp[i] = max(take, notTake);
+		}
+		return dp[n-1];	
+	}
+};
+
+TC: O(n)
+SC: O(n)
+
+-> House Robber II
+
+Trick: [1....n-1] + [0.....n-2] 
+
+class Solution {
+public:
+
+	int solve(vector<int>& nums) {
+		int n = nums.size();
+		int prev2 = 0;
+		int prev1 = nums[0];
+		for(int i = 2; i < n; ++i) {
+			int take = 0;
+			if(i > 1) take = nums[i] + prev2;
+			int notTake = prev1;
+			int curr = max(take, notTake);
+			prev2 = prev1; 
+			prev1 = curr;
+		}
+		return prev1;
+	}
+
+	int houseRobber(vector<int>& nums) {
+		int n = nums.size();
+		if(n == 1) return nums[0];
+		vector<int> first, second;
+		for(int i = 0; i < n; ++i) {
+			if(i >= 1) first.push_back(nums[i]);
+			if(i != n-1) second.push_back(nums[i]);
+		}
+		return max(solve(first), solve(second));
+	}
+};
+
+TC: O(n)
+SC: O(2n) ~ O(n)
+
+// To optimize space to O(1) -> pass ranges like [0..n-2] and [1..n-1]
+
+
+-> Minimum Cost Climbing Stairs
+class Solution {
+public: 
+	int solve(int i, vector<int>& cost, vector<int>& dp) {
+		if(i <= 1) return cost[i];
+		if(dp[i] != -1) return dp[i];
+		return dp[i] = cost[i] + min(solve(i-1, cost, dp), solve(i-2, cost, dp));
+	}
+
+	int minCostClimbingStairs(vector<int>& cost) {
+		int n = cost.size();
+		vector<int> dp(n, -1);
+		return min(solve(n-1, cost, dp), solve(n-2, cost, dp);
+	}
+};
+
+TC: O(n)
+SC: O(n) + O(n)
+
+Optimization by removing Recursion
+int minCostClimbingStairs(vector<int>& cost) {
+	int prev2 = nums[0];
+	int prev1 = nums[1];
+	for(int i = 2; i < cost.size(); ++i) {
+		int curr = cost[i] + min(prev2, prev1);
+		prev2 = prev1;
+		prev1 = curr;
+	}
+	return min(prev2, prev1);
+}
+
+TC: O(n)
+SC: O(1)
+
+-> Decode Strings
+
+class Solution {
+public:
+
+	int solve(int i, string& s, vector<int>& dp) {
+		if(i == s.size()) return 1;
+		if(s[i] == '0') return 0;
+		if(dp[i] != -1) return dp[i];
+		int ways = solve(i+1, s, dp);
+		if(i + 1 < s.size()) {
+			int num = (s[i] - '0')*10 + (s[i+1] - '0');
+			if(num >= 10 && num <= 26) ways += solve(i+2, s, dp);
+		}
+		return dp[i] = ways;
+	}	
+
+	int numDecodings(string s) {
+		vector<int> dp(s.size(), -1);
+		return- solve(0, s, dp);
+	}
+}
+
+TC: O(n)
+SC: O(n) + O(n)
+
+
+----------- Phase-2 (Grids)------------
+
+-> Unique Paths
+class Solution {
+public:
+	int solve(int i, int j, vector<vector<int>>& dp) {
+		if(i == 0 && j == 0) return 1;
+		if(i < 0 || j < 0) return 0;
+		if(dp[i][j] != -1) return dp[i][j];
+		int up = solve(i-1, j, dp);
+		int left = solve(i, j-1, dp);
+		return dp[i][j] = up + left;
+	}
+
+	int uniquePath(int m, int n) {
+		vector<vector<int>> dp(m, vector<int>(n, -1));
+		return solve(m - 1, n - 1, dp);
+	}
+};
+
+TC: O(m*n)
+SC: O(m*n) -> Memo + O(m+n) -> stack
+
+Optimization:
+int uniquePath(int m, int n) {
+	vector<vector<int>> dp(m, vector<int>(n, -1));
+	dp[0][0] = 1;
+	for(int i = 0; i < m; ++i) {
+		for(int j = 0; j < n; ++j) {
+			if(i == 0 && j == 0) continue;
+			int up = 0, left = 0;
+			if(i > 0) up = dp[i-1][j];
+			if(j > 0) left = dp[i][j-1];
+			dp[i][j] = up + left;
+		}
+	}
+	return dp[m-1][n-1];
+}
+
+TC: O(m*n)
+SC: O(m*n)
+
+-> Unique Paths II
+class Solution {
+public:
+	int solve(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dp) {
+		if(i == 0 && j == 0) return 1;
+		if(i >= 0 && j >= 0 && grid[i][j] == 1) return 0;
+		if(i < 0 || j < 0) return 0;	// out of bounds doesn't count
+		if(dp[i][j] != -1) return dp[i][j];
+		int up = solve(i-1, j, grid, dp);
+		int left = solve(i, j-1, grid, dp);
+		return dp[i][j] = up + left;
+	}
+
+	int uniquePathII(vector<vector<int>>& grid) {
+		int m = grid.size();
+		int n = grid[0].size();
+		vector<vector<int>> dp(m, vector<int>(n, -1));
+		return solve(m-1, n-1, grid, dp);
+	}
+};
+
+TC: O(m*n)
+SC: O(m*n) -> Memo + O(m+n) -> stack
+
+-> Minimum Path Sum
+class Solution {
+public:
+	int solve(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dp) {
+		if(i == 0 && j == 0) return grid[0][0];
+		if(i < 0 || j < 0) return 1e9;
+		if(dp[i][j] != -1) return dp[i][j];
+		int up = grid[i][j] + solve(i-1, j, grid, dp);
+		int left = grid[i][j] + solve(i, j-1, grid, dp);
+		return dp[i][j] = min(up, left);
+	}
+
+	int minPathSum(vector<vector<int>>& grid) {
+		int m = grid.size(), n = grid[0].size();
+		vector<vector<int>> dp(m, vector<int>(n, -1));
+		return solve(m-1, n-1, grid, dp);
+	}
+};
+
+TC: O(m*n)
+SC: O(m*n) + O(m+n)
+
+Optimizing extra space
+int minPathSum(vector<vector<int>>& grid) {
+	int m = grid.size(), n = grid[0].size();
+	vector<vector<int>> dp(m, vector<int>(n, -1));
+	dp[0][0] = grid[0][0];
+	for(int i = 0; i < m; ++i) {
+		for(int j = 0; j < n; ++j) {
+			if(i == 0 && j == 0) continue;
+			int up = 1e9, left = 1e9;
+			if(i > 0) up = dp[i-1][j];
+			if(j > 0) left = dp[i][j-1];
+			dp[i][j] = grid[i][j] + min(left, up);
+		}
+	}
+	return dp[m-1][n-1];
+}
+
+TC: O(m*n)
+SC: O(m*n)
+
+Optimization 2 for reducing extra space :)
+int minPathSum(vector<vector<int>>& grid) {
+	int m = grid.size(), n = grid[0].size();
+	vector<int> prev(n, 0);
+	for(int i = 0; i < m; ++i) {
+		vector<int> curr(n, 0);
+		for(int j = 0; j < n; ++j) {
+			if(i == 0 && j == 0)  {
+				curr[j] = grid[0][0];
+				continue;
+			}
+			int up = 1e9, left = 1e9;
+			if(i > 0) up = prev[j];
+			if(j > 0) left = curr[j-1];
+			curr[j] = grid[i][j] + min(left, up);
+		}
+		prev = curr;
+	}
+	return prev[n-1];
+}
+
+TC: O(m*n)
+SC: O(n)
+
+
+
+
+
+
+
+
+
