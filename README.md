@@ -1,7 +1,7 @@
 # 🧩 DSA Code Snippets 
 
 Welcome to my collection of **Data Structures & Algorithms** solutions from **Striver’s A2Z DSA Sheet**.  
-I’m documenting my journey as I improve problem-solving skills — one topic at a time ✈
+I’m documenting my journey as I improve problem-solving skills — one topic at a time ✈  
 
 <p align="left">
   <img src="https://img.shields.io/badge/Language-C++-blue" />
